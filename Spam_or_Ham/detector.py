@@ -39,8 +39,41 @@ def SplitIntoWords(message):
     #message = message.decode('utf_8')
     #message = unicode(message, 'utf8')
     #print(TextBlob(message).words)
-    message = str(message)
+    #message = str(message)
     return TextBlob(message).words
 # This is what the first 5 records look when splitted into individual words
 print(messages.message.head().apply(SplitIntoWords))
-print(messages.message.head().apply())
+
+
+# Convert each word into its base form
+def WordsIntoBaseForm(message):
+    message = message.lower()
+    words = TextBlob(message).words
+    return [word.lemma for word in words]
+# Convert each message into a vector
+trainingVector = CountVectorizer(analyzer=WordsIntoBaseForm).fit(messages['message'])
+
+# View occurrence of words in an arbitrary vector. Use 9 for vector #10.
+message10 = trainingVector.transform([messages['message'][9]])
+print (message10)
+
+# Print message #10 for comparison
+print(messages['message'][9])
+# Identify repeated words
+print('First word that appears twice:',trainingVector.get_feature_names()[3437])
+print('Word that appears three times:',trainingVector.get_feature_names()[5192])
+
+# Bag-of-words for the entire training dataset
+messagesBagOfWords = trainingVector.transform(messages['message'])
+# Weight of words in the entire training dataset - Term Frequency and Inverse Document Frequency
+messagesTfidf = TfidfTransformer().fit(messagesBagOfWords).transform(messagesBagOfWords)
+
+# Train the model
+spamDetector = MultinomialNB().fit(messagesTfidf,messages['class'].values)
+
+# Test message
+#You can test the model by giving your own example string
+example = ['England v Macedonia - dont miss the goals/team news. Txt ENGLAND to 99999']
+# Result
+checkResult = spamDetector.predict(trainingVector.transform(example))[0]
+print('The message [',example[0],'] has been classified as', checkResult)
