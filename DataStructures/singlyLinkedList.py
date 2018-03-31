@@ -1,19 +1,55 @@
 class Node:
-    def __init__(self,val):
-        self.val = val
+    def __init__(self,data):
+        self.data = data
         self.next = None
+        self.prev = None
 
-    def nxt(self,next_val):
-        self.next = next_val
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def addToLast(self,data):
+        node = Node(data)
+        if self.head == None:
+            self.head = node
+        else:
+            node_traverse = self.head
+            while node_traverse != None:
+                tmp = node_traverse
+                node_traverse = node_traverse.next
+            tmp.next = node
+            node.prev = tmp
+            #print(node_traverse.data)
+                
+    def addToFirst(self,data):
+        node = Node(data)
+        if self.head == None:
+            self.head = node
+        else:
+            node.next = self.head
+            node.next.prev = node
+            self.head = node
+
+    def __str__( self ) :
+        s = ""
+        p = self.head
+        if p != None :		
+            while p.next != None :
+                s += p.data
+                p = p.next
+                s += p.data
+        return s
 
     def traverse(self):
-        node = self
+        node = self.head
         while node != None:
-            print(node.val)
+            print(node.data)
             node = node.next
-      
-n = Node(1)
-n.nxt(2)
-n.nxt(3)
-n.nxt(5)
-n.traverse()
+    
+l = LinkedList()
+l.addToLast('a')
+l.addToFirst('d')
+l.addToLast('c')
+#l.add('c')
+l.traverse()
+#print(l)
