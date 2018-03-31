@@ -8,6 +8,22 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
+    def deleteFirst(self):
+        if self.head == None:
+            pass
+        else:
+            self.head = self.head.next
+            
+    def deleteLast(self):
+        if self.head == None:
+            pass
+        else:
+            node_traverse = self.head
+            while node_traverse != None:
+                tmp = node_traverse
+                node_traverse = node_traverse.next
+            tmp.prev.next = None
+    
     def addToLast(self,data):
         node = Node(data)
         if self.head == None:
@@ -52,4 +68,10 @@ l.addToFirst('d')
 l.addToLast('c')
 #l.add('c')
 l.traverse()
+print("deleting first element")
+l.deleteFirst()
+print("deleting last ")
+l.deleteLast()
+l.traverse()
+
 #print(l)
