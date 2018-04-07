@@ -30,12 +30,9 @@ class LinkedList:
             self.head = node
         else:
             node_traverse = self.head
-            while node_traverse != None:
-                tmp = node_traverse
-                node_traverse = node_traverse.next
-            tmp.next = node
-            node.prev = tmp
-            #print(node_traverse.data)
+            while node_traverse.next != None:
+				print(node_traverse.data)
+				node_traverse = node_traverse.next
                 
 	def addToFirst(self,data):
 		node = Node(data)
@@ -50,7 +47,7 @@ class LinkedList:
 		node = Node(data)
 		if self.head == None:
 			self.head = node
-		else:
+		else: 
 			if position == 1:
 				addToFirst(data)
 			else:
@@ -79,13 +76,3 @@ l = LinkedList()
 l.addToLast('a')
 l.addToLast('c')
 l.traverse()
-l.addToFirst('d')
-#l.add('c')
-l.traverse()
-print("deleting first element")
-l.deleteFirst()
-print("deleting last element")
-l.deleteLast()
-l.traverse()
-#l.insertAt(1,2)
-#print(l)

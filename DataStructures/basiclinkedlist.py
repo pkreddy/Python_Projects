@@ -9,28 +9,37 @@ class LinkedList:
 		self.size = 0
 
 	def deleteFirst(self):
-		self.head = self.head.next
-		self.size = self.size - 1
-	
+		if self.head == None:
+			pass
+		else:
+			self.head = self.head.next
+			self.size = self.size - 1
+			
 	def deleteLast(self):
-		node = self.head
-		while node.next.next != None:
-			node = node.next
-		node.next = None
-		self.size = self.size - 1
+		if self.head == None:
+			pass
+		else:		
+			node = self.head
+			while node.next.next != None:
+				node = node.next
+			node.next = None
+			self.size = self.size - 1
 	
 	def deleteAt(self,position):
-		node = self.head
-		if position > self.size:
-			print('cannot be deleted since size is',self.size,'which is less than the given position',position)
+		if self.head == None:
+			pass
 		else:
-			if(position == 1):
-				self.deleteFirst()
+			node = self.head
+			if position > self.size:
+				print('cannot be deleted since size is',self.size,'which is less than the given position',position)
 			else:
-				self.size = self.size - 1
-				for i in range(1,position-1,1):
-					node = node.next
-				node.next = node.next.next
+				if(position == 1):
+					self.deleteFirst()
+				else:
+					self.size = self.size - 1
+					for i in range(1,position-1,1):
+						node = node.next
+					node.next = node.next.next
 				
 	def addToFirst(self,data):
 		node = Node(data)
@@ -75,28 +84,19 @@ class LinkedList:
 			print(node.val) #prints the node value
 			node = node.next #move to the next node
 
-'''
-node1 = Node(12)
-node2 = Node(14)
-node3 = Node(16)
-node1.next = node2
-node2.next = node3
-
-node1.traverse()
-'''
-
 l = LinkedList()
 l.addToFirst(1)
+l.addToLast(0)
 l.addToFirst(2)
 l.addToFirst(3)
 l.addToFirst(4)
 l.addToFirst(5)
-l.addToLast(0)
+
 l.insertAt(10,5)
 l.deleteFirst()
 l.deleteFirst()
 l.deleteLast()
-l.deleteAt(5)
+l.deleteAt(1)
 print("size is",l.size)
 l.traverse()
 
