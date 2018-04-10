@@ -13,7 +13,16 @@ class LinkedList:
             pass
         else:
             self.head = self.head.next
-            
+ 
+	def addToFirst(self,data):
+		node = Node(data)
+		if self.head == None:
+			self.head = node
+		else:
+			temp = self.head
+			self.head = node
+			self.head.next = temp
+			
     def deleteLast(self):
         if self.head == None:
             pass
@@ -24,6 +33,15 @@ class LinkedList:
                 node_traverse = node_traverse.next
             tmp.prev.next = None
     
+	def add(self,data):
+		node = Node(data)
+        if self.head == None:
+            self.head = node
+        else:
+            node.next = self.head
+            self.head = node
+			self.head.next.prev = self.head
+	
     def addToLast(self,data):
         node = Node(data)
         if self.head == None:
@@ -34,15 +52,6 @@ class LinkedList:
 				print(node_traverse.data)
 				node_traverse = node_traverse.next
                 
-	def addToFirst(self,data):
-		node = Node(data)
-        if self.head == None:
-            self.head = node
-        else:
-            node.next = self.head
-            node.next.prev = node
-            self.head = node
-
 	def insertAt(self,data,position):
 		node = Node(data)
 		if self.head == None:
@@ -73,6 +82,7 @@ class LinkedList:
             node = node.next
     
 l = LinkedList()
+l.add('c')
 l.addToLast('a')
-l.addToLast('c')
+
 l.traverse()
