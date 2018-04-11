@@ -56,10 +56,40 @@ class LinkedList:
 			node.prev.next = None
 			self.size = self.size - 1
 	
-	def insertAt():
-		pass
-		
-		
+	def insertAt(self,data,position):
+		if self.head == None:
+			self.head = Node(data)
+		if self.size < position:
+			print("cannot add to the linkedlist because given position is greater than size of the linkedlist")
+		else:
+			self.size = self.size + 1
+			node = self.head
+			for i in range(1,position-1,1):
+				node = node.next
+			data = Node(data)
+			a = node
+			b = a.next
+			a.next = data
+			data.prev = a
+			data.next = b
+			b.prev = data
+
+	def deleteAt(self,position):
+		if self.head == None:
+			print("No more nodes on the linkedlist to delete")
+		if self.size < position:
+			print("cannot delete the node on linkedlist because given position is greater than the size of the linkedlist")
+		else:	
+			if position == 1:
+				self.head = self.head.next
+			else:
+				self.size = self.size - 1
+				node = self.head
+				for i in range(1,position):
+					node = node.next
+				node.prev.next = node.next
+			
+
 l = LinkedList()
 l.add(1)
 l.add(2)
@@ -74,3 +104,9 @@ l.deleteLast()
 l.printLL()
 print("\n")
 print(l.size)
+l.insertAt(5,2)
+print("\n")
+l.printLL()
+l.deleteAt(3)
+print("\n")
+l.printLL()
