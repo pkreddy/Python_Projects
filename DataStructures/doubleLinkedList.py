@@ -89,7 +89,14 @@ class LinkedList:
 					node = node.next
 				node.prev.next = node.next
 			
-
+	def reverse(self):
+		L1 = LinkedList()
+		node = self.head
+		while(node):
+			L1.add(node.data)
+			node = node.next
+		return L1
+			
 l = LinkedList()
 l.add(1)
 l.add(2)
@@ -108,5 +115,10 @@ l.insertAt(5,2)
 print("\n")
 l.printLL()
 l.deleteAt(3)
+l.add(6)
+l.add(0)
 print("\n")
+l.printLL()
+print("\n")
+l = l.reverse()
 l.printLL()

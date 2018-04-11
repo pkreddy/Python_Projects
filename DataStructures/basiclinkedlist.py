@@ -83,6 +83,14 @@ class LinkedList:
 		while node != None:
 			print(node.val) #prints the node value
 			node = node.next #move to the next node
+		
+	def reverse(self):
+		L1 = LinkedList()
+		node = self.head
+		while(node):
+			L1.addToFirst(node.val)
+			node = node.next
+		return L1
 
 l = LinkedList()
 l.addToFirst(1)
@@ -99,5 +107,7 @@ l.deleteLast()
 l.deleteAt(1)
 print("size is",l.size)
 l.traverse()
-
+l = l.reverse()
+print("\n")
+l.traverse()
 #print(l.head.val)
