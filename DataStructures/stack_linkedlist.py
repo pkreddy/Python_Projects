@@ -28,7 +28,12 @@ class stack:
 			for i in range(1,self.size-1):
 				node = node.next
 			node.next = None
-			
+	
+	def isEmpty(self):
+		if self.size:
+			return False
+		return True
+	
 	def print_stack(self):
 		node = self.head
 		while(node):
@@ -43,3 +48,4 @@ s.print_stack()
 print("\n")
 s.pop()
 s.print_stack()
+print(s.isEmpty())
