@@ -90,12 +90,38 @@ class LinkedList:
 				node.prev.next = node.next
 			
 	def reverse(self):
+		#reverse by creating a new linkedlist
 		L1 = LinkedList()
 		node = self.head
 		while(node):
 			L1.add(node.data)
 			node = node.next
 		return L1
+		
+	def reverse1(self):
+		prev = None
+		next = None
+		current = self.head
+		while(current != None):
+			next = current.next
+			current.next = prev
+			current.prev = next
+			prev = current
+			current = next
+
+	def fprint(self,p):
+		#forward print
+		if p == None:
+			return
+		print p.data,
+		self.fprint(p.next)
+		
+	def rprint(self,p):
+		#reverse print
+		if p == None:
+			return
+		self.rprint(p.next)	
+		print p.data,		
 			
 l = LinkedList()
 l.add(1)
@@ -121,4 +147,9 @@ print("\n")
 l.printLL()
 print("\n")
 l = l.reverse()
+#l.reverse1()
 l.printLL()
+print("\n")
+l.fprint(l.head)
+print("\n")
+l.rprint(l.head)
