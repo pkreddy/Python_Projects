@@ -8,6 +8,10 @@ class stack:
 	def pop(self):
 		self.s.pop()
 	
+	def isEmpty(self):
+		if self.s:
+			return False
+		return True
 	def print_stack(self):
 		print(self.s)
 	
@@ -17,3 +21,4 @@ s.push(2)
 s.push(3)
 s.pop()
 s.print_stack()
+print(s.isEmpty())
