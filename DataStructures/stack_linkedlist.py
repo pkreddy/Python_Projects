@@ -37,8 +37,11 @@ class stack:
 	def print_stack(self):
 		node = self.head
 		while(node):
-			print(node.data)
+			print node.data,
 			node = node.next
+		print("")
+	def peek(self):
+		print(self.head.data)
 		
 s = stack()
 s.push(1)
@@ -49,3 +52,4 @@ print("\n")
 s.pop()
 s.print_stack()
 print(s.isEmpty())
+s.peek()
