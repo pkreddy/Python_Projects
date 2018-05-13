@@ -1,3 +1,5 @@
+#Written for spark2.0 and higher
+
 from pyspark import SparkContext, SparkConf
 import random as rand
 conf = SparkConf().setAppName("getting_started")
