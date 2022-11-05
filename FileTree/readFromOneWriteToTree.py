@@ -1,10 +1,9 @@
 import os
 
 source = ""
-# fs = list_files(source)
-
 content = []
 
+# open the source file and read entirely
 with open(source, 'r') as f_in:
     content = f_in.read()
 
