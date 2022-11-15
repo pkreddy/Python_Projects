@@ -11,5 +11,5 @@ l.next.next = Node(0)
 
 linked_list = l
 while linked_list is not None:
-    print(linked_list.val)
+    print(linked_list)
     linked_list = linked_list.next
