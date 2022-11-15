@@ -1,9 +1,15 @@
 from Node import Node
 
-l = ListNode(4)
-m = ListNode(2)
-# 4 -> 2
+l = Node(4)
+l.next = Node(2)
+l.next.next = Node(0)
 
-l.next = m
-print(l.val)
-print(l.next.val)
+# 4 -> 2 -> 0 -> 15 - > 8 -> 5
+
+# print(l.val)
+# print(l.next.val)
+
+linked_list = l
+while linked_list is not None:
+    print(linked_list.val)
+    linked_list = linked_list.next
